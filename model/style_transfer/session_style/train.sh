@@ -6,15 +6,9 @@
 #PBS -q GpuQ
 
 
-source ~/v_python/bin/activate
-export THEANO_FLAGS=device=gpu3,floatX=float32,lib.cnmem=0.8
-
-export CUDA_ROOT=~/cuda/cuda-8.0
-export CUDA_HOME=~/cuda/cuda-8.0
-export PATH=${CUDA_HOME}/bin:$PATH
-export LD_LIBRARY_PATH=${CUDA_HOME}/lib64:$LD_LIBRARY_PATH
-
-python2 ./train_nmt.py 
-
-
-
+PATH=/home/v2john/.miniconda2/bin:$PATH \
+THEANO_FLAGS='device=cuda0,floatX=float32' \
+MKL_THREADING_LAYER=GNU \
+CUDA_ROOT=${CUDA_HOME} \
+PATH=${CUDA_HOME}/bin:$PATH \
+python -u ./train_nmt.py

@@ -14,6 +14,8 @@ from multiprocessing import Process, Queue
 
 def translate_model(queue, rqueue, pid, model, options, k, normalize):
 
+    import theano.gpuarray
+    theano.gpuarray.use("cuda0")
     from theano.sandbox.rng_mrg import MRG_RandomStreams as RandomStreams
     from theano import shared
     trng = RandomStreams(1234)
